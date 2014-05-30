@@ -1,0 +1,10 @@
+{
+  "name": "node-rollsum",
+  "version": "0.0.1",
+  "description": "rollsum library for node.js",
+  "main": "./lib/rollsum.js",
+  "author": "eldereal",
+  "license": "LGPL",
+  "dependencies": {
+  }
+}
