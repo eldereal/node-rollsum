@@ -124,6 +124,10 @@ void RollsumObj::ProcessBufferInSingleChunk(char* buf, uint32_t beginIndex, uint
 }
 
 void RollsumObj::ProcessRemainedBuffer(v8::Handle<v8::Function> &cb){
+	if(this->len < this->size){
+		//no enough bytes feed, so there is no output;
+		return;
+	}
 	uint32_t remainCount = this->pos - this->size + 1;
 	for(uint32_t i=0; i<remainCount;i++){
 		unsigned char rollin = this->buffer[this->size+i-1];

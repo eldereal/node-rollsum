@@ -1,20 +1,22 @@
 var fs = require('fs');
 var crypto = require('crypto');
+var rollsum = require('../lib/rollsum.js');
 
-var hash = new Adler32RollingHash(512, 512);
-var hashes = [];
-var hashCount = 0;
+var digest = new rollsum(512, 512);
+var digests = [];
+var digestCount = 0;
 
-hash.on('hash', function(length){
-  hashCount+=length;
-  var h = hash.getHash(0);
-  var md5 = crypto.createHash('md5').update(hash.getHashData(0)).digest();
-  hashes.push({weak: h, md5: md5});
+digest.on('digest', function(length){
+  digestCount+=length;
+  var h = digest.getDigest(0).toString(16);
+  var md5 = crypto.createHash('md5').update(digest.getDigestData(0)).digest("hex");
+  digests.push({weak: h, md5: md5});
 }).on('end', function(){
-  //console.info("hash results ",hashes);
-  console.info("hash count", hashCount);
-  console.info("file length ",hash.getLength());
+  console.info("digests count:", digestCount);
+  console.info("digests for each 512 block:");
+  console.info(digests);
+  console.info("file length:",digest.getLength());
 });
 
 var r = fs.createReadStream(process.argv[2]);
-r.pipe(hash);
+r.pipe(digest);
