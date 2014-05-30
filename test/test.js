@@ -1,3 +1,10 @@
+if(process.argv.length<3){
+	var path =  require("path");
+	var p = path.relative(process.cwd(), process.argv[1]);
+	console.error("Usage", process.argv[0], p, "filename");
+	process.exit(1);
+}
+
 var fs = require('fs');
 var crypto = require('crypto');
 var rollsum = require('../lib/rollsum.js');
