@@ -1,10 +1,14 @@
 {
   "name": "node-rollsum",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "rollsum library for node.js",
   "main": "./lib/rollsum.js",
-  "author": "eldereal@gmail.com",
+  "author": "Eldereal Bai <eldereal@gmail.com>",
   "license": "LGPL",
   "dependencies": {
+  },
+  "repository" :  { 
+  	"type" : "git", 
+  	"url" : "https://github.com/eldereal/node-rollsum.git"
   }
 }
